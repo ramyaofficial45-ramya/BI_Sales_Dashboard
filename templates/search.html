@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Search Order</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>🔍 Search Order</h1>
+
+<form method="POST">
+    <input type="number" name="order_id" placeholder="Enter Order ID" required>
+    <button type="submit">Search</button>
+</form>
+
+{% if result %}
+
+<div class="result">
+    <h3>Order Found</h3>
+    Customer: {{ result.customer }} <br>
+    Product: {{ result.product }} <br>
+    City: {{ result.city }} <br>
+    Quantity: {{ result.quantity }} <br>
+    Price: ₹ {{ result.price }}
+</div>
+{% elif result is not none %}
+<p>No order found.</p>
+{% endif %}
+
+<a href="/" class="btn">Back Home</a>
+</body>
+</html>

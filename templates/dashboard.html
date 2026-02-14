@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h1>📊 Sales Analytics Dashboard</h1>
+
+<div class="stats">
+    <div class="card">📦 Total Orders<br><b>{{ orders }}</b></div>
+    <div class="card">💰 Revenue<br><b>₹ {{ revenue }}</b></div>
+    <div class="card">🏆 Top Product<br><b>{{ top_product }}</b></div>
+</div>
+
+<h2>Category Sales</h2>
+<canvas id="categoryChart"></canvas>
+
+<h2>City Orders</h2>
+<canvas id="cityChart"></canvas>
+
+<h2>Monthly Sales</h2>
+<canvas id="monthChart"></canvas>
+
+<a href="/" class="btn">Back Home</a>
+
+<!-- Flask data safely passed as JSON -->
+
+<script id="flaskData" type="application/json">
+{
+  "category_labels": {{ category_sales.keys()|list|tojson }},
+  "category_values": {{ category_sales.values()|list|tojson }},
+  "city_labels": {{ city_orders.keys()|list|tojson }},
+  "city_values": {{ city_orders.values()|list|tojson }},
+  "month_labels": {{ monthly_sales.keys()|list|tojson }},
+  "month_values": {{ monthly_sales.values()|list|tojson }}
+}
+</script>
+
+<script>
+/* Read data coming from Flask */
+const flaskData = JSON.parse(document.getElementById("flaskData").textContent);
+
+// Category Bar Chart
+new Chart(document.getElementById('categoryChart'), {
+    type: 'bar',
+    data: {
+        labels: flaskData.category_labels,
+        datasets: [{
+            label: 'Products Sold',
+            data: flaskData.category_values,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: true }
+        }
+    }
+});
+
+// City Pie Chart
+new Chart(document.getElementById('cityChart'), {
+    type: 'pie',
+    data: {
+        labels: flaskData.city_labels,
+        datasets: [{
+            data: flaskData.city_values
+        }]
+    },
+    options: {
+        responsive: true
+    }
+});
+
+// Monthly Line Chart
+new Chart(document.getElementById('monthChart'), {
+    type: 'line',
+    data: {
+        labels: flaskData.month_labels,
+        datasets: [{
+            label: 'Monthly Sales',
+            data: flaskData.month_values,
+            borderWidth: 2,
+            fill: false,
+            tension: 0.3
+        }]
+    },
+    options: {
+        responsive: true
+    }
+});
+</script>
+
+</body>
+</html>

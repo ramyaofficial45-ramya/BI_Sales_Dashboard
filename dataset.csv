@@ -1,0 +1,13 @@
+order_id,customer,city,product,category,price,quantity,date
+1,Ram,Chennai,Mobile,Electronics,15000,1,2025-01-02
+2,Arun,Coimbatore,Shoes,Fashion,2000,2,2025-01-03
+3,Priya,Madurai,Laptop,Electronics,55000,1,2025-01-05
+4,Kaviya,Salem,Watch,Accessories,3000,1,2025-01-06
+5,Vignesh,Chennai,Headphones,Electronics,2500,2,2025-01-07
+6,Rani,Erode,Saree,Fashion,3500,1,2025-01-09
+7,Ajay,Chennai,Keyboard,Electronics,1200,1,2025-01-10
+8,Sneha,Madurai,Bag,Fashion,1800,1,2025-01-11
+9,Karthik,Salem,Tablet,Electronics,22000,1,2025-02-01
+10,Meena,Coimbatore,Heels,Fashion,2500,1,2025-02-03
+11,Deepak,Chennai,Camera,Electronics,45000,1,2025-02-05
+12,Pooja,Erode,Jewelry,Accessories,5000,1,2025-02-08
